@@ -1,0 +1,322 @@
+ <!--*************Informations concernant la femme******************-->
+ <div class="container card-0 justify-content-center "  >
+    <div class="card-body px-sm-4 px-0">
+        
+<!--title-->
+      <div class="row justify-content-center mb-5">
+        <div class="col-md-10 col">
+          <h3 class="font-weight-bold ml-md-0 mx-auto text-center text-sm-left">Informations</h3>
+          <br>
+          <br>
+          <h3 class="font-weight-bold ml-md-0 mx-auto text-center text-sm-left">concernant la femme</h3>
+        </div>
+      </div>
+<!---->
+      <div class="row justify-content-center round">
+        <div class="col-lg-10 col-md-12 ">
+          <div class="card shadow-lg card-1">
+            <div class="card-body inner-card">
+              <div class="row justify-content-center">
+                <div class="row justify-content-center">
+<!---->         
+<div *ngIf="carnetForm._id"  class="edit-form">
+
+                  <div class="col-md-12 col-lg-10 col-12" >
+                    <div class="form-group files" >
+                      <label class="my-auto">Photo</label>
+                      <input id="file" type="file" class="form-control" [(ngModel)]="carnetForm.photo" (change)="loadImage($event)" />
+                    </div>
+                  </div>
+                <div class="col-lg-5 col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <label for="name">Nom</label>
+                    <input type="text" class="form-control" id="name" [(ngModel)]="carnetForm.nom">
+                  </div>
+                  <div class="form-group">
+                    <label for="desc">Prénom</label>
+                    <input type="text" class="form-control" id="desc" [(ngModel)]="carnetForm.prenom">
+                  </div>
+                  <div class="form-group">
+                    <label for="qte">Adresse</label>
+                    <input type="text" class="form-control" id="qte" [(ngModel)]="carnetForm.adresse">
+                  </div>
+                  <div class="form-group">
+                    <label for="id">Date de naissance</label>
+                    <input type="date" class="form-control" id="id" [(ngModel)]="carnetForm.naissance">
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Nationalité</label>
+                    <input type="text" class="form-control" id="name" [(ngModel)]="carnetForm.nationalite">
+                  </div>
+                  <div class="form-group">
+                    <label for="desc">CIN</label>
+                    <input type="number" class="form-control" id="desc" [(ngModel)]="carnetForm.Cin">
+                  </div>
+                  <div class="form-group">
+                    <label for="desc">Téléphone</label>
+                    <input type="number" class="form-control" id="desc" [(ngModel)]="carnetForm.tel">
+                  </div>
+                  <div class="form-group">
+                    <label for="qte">Niveau d'instruction</label>
+                    <input type="text" class="form-control" id="qte" [(ngModel)]="carnetForm.niv_inst">
+                  </div>
+                  <div class="form-group">
+                    <label for="qte">Occupation</label>
+                    <input type="text" class="form-control" id="qte" [(ngModel)]="carnetForm.occupation">
+                  </div>
+                  <!--: TRAITANT MEDECIN-->
+                  <h4>MEDECIN TRAITANT</h4>
+                  <div class="form-group">
+                      <label for="qte">Nom</label>
+                      <input type="text" class="form-control" id="qte" [(ngModel)]="carnetForm.nomM">
+                    </div>
+                    <div class="form-group">
+                        <label for="qte">Prénom</label>
+                        <input type="text" class="form-control" id="qte" [(ngModel)]="carnetForm.prenomM">
+                      </div>
+                      <div class="form-group">
+                        <label for="desc">Téléphone</label>
+                        <input type="number" class="form-control" id="desc" [(ngModel)]="carnetForm.telM">
+                      </div>
+                      <!--Couverture medicale-->
+                      <!--Bouton cochet -->
+                      <div class="form-group">
+                        <fieldset>
+                          <legend>COUVERTURE MEDICALE</legend>
+                          <div>
+                            <input type="radio" id="yes" name="yes" [(ngModel)]="carnetForm.couv">
+                            <label for="yes">Oui</label>
+                          </div>
+                          <div>
+                            <input type="radio" id="no" name="no" [(ngModel)]="carnetForm.couv">
+                            <label for="no">Non</label>
+                          </div>
+                          <div class="form-group">
+                            <label for="desc">Num°</label>
+                            <input type="number" class="form-control" id="desc" [(ngModel)]="carnetForm.num_c">
+                          </div>
+                        </fieldset>
+                      </div>
+                      <!--Groupe sanguin -->
+                      <!--Bouton cochet -->
+                      <div class="form-group">
+                        <fieldset>
+                          <legend>GROUPE SANGUIN/RHESUS</legend>
+                          <div class="col-lg-5 col-md-6 col-sm-12">
+                            <h5>Groupe sanguin</h5>
+                            <div>
+                              <input type="radio" id="A" name="A" [(ngModel)]="carnetForm.sang">
+                              <label for="A">A</label>
+                            </div>
+                            <div>
+                              <input type="radio" id="B" name="B" [(ngModel)]="carnetForm.sang">
+                              <label for="B">B</label>
+                            </div>
+                            <div>
+                              <input type="radio" id="AB" name="AB" [(ngModel)]="carnetForm.sang">
+                              <label for="AB">AB</label>
+                            </div>
+                            <div>
+                              <input type="radio" id="O" name="O" [(ngModel)]="carnetForm.sang">
+                              <label for="O">O</label>
+                            </div>
+                          </div>
+                          <div class="text-md-end">
+                            <h5>Rhesus</h5>
+                            <div>
+                              <input type="radio" id="positive" name="positive" [(ngModel)]="carnetForm.rhesus">
+                              <label for="positive">+</label>
+                            </div>
+                            <div>
+                              <input type="radio" id="negative" name="negative" [(ngModel)]="carnetForm.rhesus">
+                              <label for="negative">-</label>
+                            </div>
+                          </div>
+                        </fieldset>
+                      </div>
+                      <!--Allergie-->
+                      <h4>ALLERGIE</h4>
+                      <div class="form-group">
+                          <label for="qte">Type</label>
+                          <input type="text" class="form-control" id="qte" [(ngModel)]="carnetForm.type_allergie">
+                        </div>
+                        <div class="form-group">
+                          <label for="qte">Déclarée le</label>
+                          <input type="date" class="form-control" id="qte" [(ngModel)]="carnetForm.declaree_allergie">
+                        </div>
+                        <div class="form-group">
+                          <label for="qte">Traitement suivi</label>
+                          <input type="text" class="form-control" id="qte" [(ngModel)]="carnetForm.traitement">
+                        </div>
+                        <div class="form-group">
+                          <label for="qte">Médecin traitant</label>
+                          <input type="text" class="form-control" id="qte" [(ngModel)]="carnetForm.med_tret">
+                        </div>
+                        <!--Puberté-->
+                        <h4>PUBERTE</h4>
+                        <div class="form-group">
+                            <label for="qte">Age aux premiéres régles</label>
+                            <input type="number" class="form-control" id="qte" [(ngModel)]="carnetForm.age_pub">
+                          </div>
+                          <div class="form-group">
+                            <label for="qte">Problémes de santé rencontrés:</label>
+                            <textarea type="text" class="form-control" id="qte" [(ngModel)]="carnetForm.prob">
+                            </textarea>
+                          </div>
+                          <!--medicaux et chirurgicaux-->
+                          <!--bouton cochet-->
+                          <div class="form-group">
+                            <fieldset>
+                              <legend>ANTECEDENTS MEDICAUX ET CHIRURGICAUX</legend>
+                              <div>
+                                <input type="checkbox" id="scales" name="scales" [(ngModel)]="carnetForm.maladie">
+                                <label for="scales">Diabéte</label>
+                              </div>
+                              <div>
+                                <input type="checkbox" id="horns" name="horns" [(ngModel)]="carnetForm.maladie">
+                                <label for="horns">Cardiopathie</label>
+                              </div>
+                              <div>
+                                <input type="checkbox" id="scales" name="scales" [(ngModel)]="carnetForm.maladie">
+                                <label for="scales">Insuffisance rénale chronique</label>
+                              </div>
+                              <div>
+                                <input type="checkbox" id="horns" name="horns" [(ngModel)]="carnetForm.maladie">
+                                <label for="horns">Asthme</label>
+                              </div>
+                              <div>
+                                <input type="checkbox" id="scales" name="scales" [(ngModel)]="carnetForm.maladie">
+                                <label for="scales">Anémie</label>
+                              </div>
+                              <div>
+                                <input type="checkbox" id="horns" name="horns" [(ngModel)]="carnetForm.maladie">
+                                <label for="horns">Hépatite C</label>
+                              </div>
+                              <div>
+                                <input type="checkbox" id="horns" name="horns" [(ngModel)]="carnetForm.maladie">
+                                <label for="horns">Hépatite B</label>
+                              </div>
+                              <div>
+                                <input type="checkbox" id="horns" name="horns" [(ngModel)]="carnetForm.maladie">
+                                <label for="horns">Autres :</label>
+                              </div>
+                              <div class="form-group">
+                                <label for="desc">Autres :</label>
+                                <input type="text" class="form-control" id="desc" [(ngModel)]="carnetForm.maladie">
+                              </div>
+                            </fieldset>
+                          </div>
+                          <!--Antecedents familiaux-->
+                          <h4>ANTECEDENTS FAMILIAUX</h4>
+                          <div class="form-group">
+                              <textarea type="text" class="form-control" id="qte" [(ngModel)]="carnetForm.maladieF">
+                              </textarea>
+                            </div>
+                            <!--Handicap-->
+                            <h4>HANDICAP</h4>
+                            <div class="form-group">
+                                <label for="qte">Types</label>
+                                <input type="text" class="form-control" id="qte" [(ngModel)]="carnetForm.type_handicap">
+                              </div>
+                              <div class="form-group">
+                                <label for="qte">Déclaré le</label>
+                                <input type="date" class="form-control" id="qte" [(ngModel)]="carnetForm.declaree_handicap">
+                              </div>
+                              <!--Satut vaccinal-->
+                              <h4>STATUT VACCINAL</h4>
+                              <div class="form-group">
+                                <p style="background-color:#d69ac2;color: #9d2a56">Vaccination antitétanique</p>
+                                <!--1er-->
+                                <p>Premiére prise</p>
+                                <div class="form-group">
+                                  <label for="qte">Date</label>
+                                  <input type="date" class="form-control" id="qte" [(ngModel)]="carnetForm.date_vaccin1">
+                                </div>
+                                <div class="form-group">
+                                  <label for="qte">Lieu</label>
+                                  <input type="text" class="form-control" id="qte" [(ngModel)]="carnetForm.lieu_vaccin1">
+                                </div>
+                                <!--2éme-->
+                                <p>Deuxiéme prise</p>
+                                <div class="form-group">
+                                  <label for="qte">Date</label>
+                                  <input type="date" class="form-control" id="qte" [(ngModel)]="carnetForm.date_vaccin2">
+                                </div>
+                                <div class="form-group">
+                                  <label for="qte">Lieu</label>
+                                  <input type="text" class="form-control" id="qte" [(ngModel)]="carnetForm.lieu_vaccin2">
+                                </div>
+                                <!--3éme-->
+                                <p>Troisiéme prise</p>
+                                <div class="form-group">
+                                  <label for="qte">Date</label>
+                                  <input type="date" class="form-control" id="qte" [(ngModel)]="carnetForm.date_vaccin3">
+                                </div>
+                                <div class="form-group">
+                                  <label for="qte">Lieu</label>
+                                  <input type="text" class="form-control" id="qte" [(ngModel)]="carnetForm.lieu_vaccin3">
+                                </div>
+                                <!--4éme-->
+                                <p>Quatriéme prise</p>
+                                <div class="form-group">
+                                  <label for="qte">Date</label>
+                                  <input type="date" class="form-control" id="qte" [(ngModel)]="carnetForm.date_vaccin4">
+                                </div>
+                                <div class="form-group">
+                                  <label for="qte">Lieu</label>
+                                  <input type="text" class="form-control" id="qte" [(ngModel)]="carnetForm.lieu_vaccin4">
+                                </div>
+                                <!--5éme-->
+                                <p>Cinquiéme prise</p>
+                                <div class="form-group">
+                                  <label for="qte">Date</label>
+                                  <input type="date" class="form-control" id="qte" [(ngModel)]="carnetForm.date_vaccin5">
+                                </div>
+                                <div class="form-group">
+                                  <label for="qte">Lieu</label>
+                                  <input type="text" class="form-control" id="qte" [(ngModel)]="carnetForm.lieu_vaccin5">
+                                </div>
+                                <!--vaccination contre la Rubéole-->
+                                <p style="background-color:#d69ac2;color: #9d2a56">Vaccination contre la Rubéole</p>
+                                <div class="form-group">
+                                  <label for="qte">Date</label>
+                                  <input type="date" class="form-control" id="qte" [(ngModel)]="carnetForm.date_rubeole">
+                                </div>
+                                <div class="form-group">
+                                  <label for="qte">Lieu</label>
+                                  <input type="text" class="form-control" id="qte" [(ngModel)]="carnetForm.lieu_rubeole">
+                                </div>
+                                <!--autre-->
+                                <div class="form-group">
+                                  <label for="qte">Autres vaccinations</label>
+                                  <textarea type="text" class="form-control" id="qte" [(ngModel)]="carnetForm.autre_vaccin">
+                                  </textarea>
+                                </div>
+                                </div>
+                                <!--FIN **** boutons -->
+                                <div class="mb-2 mt-4">
+                                  <div class="text-md-end">
+                                    <button type="submit" class="btn bg-pink btn-block" (click)="updateCarnet()" routerLink="/carnet">
+                                      <small class="font-weight-bold">Modifier</small>
+                                    </button>
+                                    <button type="reset" class="btn bg-pink  btn-block" routerLink="/carnet">
+                                      <small class="font-weight-bold">Annuler</small>
+                                    </button>
+                                  </div>
+                                </div>
+<!--NGIF*-->
+    
+<div *ngIf="!carnetForm._id">
+    <br/><p> Cannot access this product...</p>
+</div>
+<!--fermeture de div -->
+</div>
+</div>                       
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>                        
+</div>

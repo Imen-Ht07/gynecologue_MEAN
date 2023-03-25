@@ -1,0 +1,225 @@
+
+<h1 mat-dialog-title> Informations concernant la femme</h1>
+<div mat-dialog-content>
+    <form [formGroup]="carnetForm" (ngSubmit)="addCarnet()">
+      <mat-form-field>
+        <mat-label>File input</mat-label>
+        <input matInput formControlName="photo" >
+        <input type="file" (change)=loadImage($event)>
+      </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Nom </mat-label>
+            <input formControlName="nom" matInput placeholder="Nom"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Prenom </mat-label>
+          <input formControlName="prenom" matInput placeholder="Prenom"/>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Adresse</mat-label>
+        <input formControlName="adresse" matInput placeholder="Adresse"/>
+    </mat-form-field> 
+     <mat-form-field appearance="fill">
+      <mat-label>Date de naissance</mat-label>
+      <input formControlName="naissance" matInput [matDatepicker]="picker" >
+      <mat-datepicker-toggle matIconSuffix [for]="picker"  ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Nationalité</mat-label>
+      <input formControlName="nationalite" matInput placeholder="Nationalité"/>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Num° CIN</mat-label>
+    <input formControlName="Cin" matInput type="number" placeholder="CIN"/>
+</mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>Téléphone</mat-label>
+  <input formControlName="tel" matInput type="number" placeholder="Téléphone"/>
+</mat-form-field>
+<!--niv scolaire-->
+<!--occupation-->
+ <!--TRAITANT MEDECIN--> 
+ <h4 mat-dialog-title>MEDECIN TRAITANT</h4>
+ <mat-form-field appearance="outline">
+  <mat-label>Nom </mat-label>
+  <input formControlName="nomM" matInput placeholder="Nom"/>
+</mat-form-field>
+<mat-form-field appearance="outline">
+<mat-label>Prenom </mat-label>
+<input formControlName="prenomM" matInput placeholder="Prenom"/>
+</mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>Téléphone</mat-label>
+  <input formControlName="telM" matInput type="number" placeholder="Téléphone"/>
+</mat-form-field>
+         <!--Couverture medicale-->
+         <label for=""><h1>COUVERTURE MEDICALE </h1> </label>
+         <mat-radio-group formControlName="couv" class="example-radio-group">
+         <mat-radio-button  class="example-radio-button" *ngFor="let couverture of couvertureList" [value]="couverture">
+       {{couverture}} 
+   </mat-radio-button>
+   </mat-radio-group>
+   <mat-form-field appearance="outline">
+    <mat-label>Num°</mat-label>
+    <input formControlName="num_c" matInput type="number" placeholder="Num°"/>
+  </mat-form-field>
+     <!--Groupe sanguin -->
+     <label for=""><h1>Groupe sanguin</h1> </label>
+     <mat-radio-group formControlName="sang" class="example-radio-group">
+     <mat-radio-button  class="example-radio-button" *ngFor="let sang of sangList" [value]="sang">
+   {{sang}} 
+</mat-radio-button>
+</mat-radio-group>
+<label for=""><h1>Rhésus</h1> </label>
+<mat-radio-group formControlName="rhesus" class="example-radio-group">
+<mat-radio-button  class="example-radio-button" *ngFor="let rhesus of rhesusList" [value]="rhesus">
+{{rhesus}} 
+</mat-radio-button>
+</mat-radio-group>
+ <!--Allergie-->
+ <h4 mat-dialog-title>ALLERGIE</h4>
+ <mat-form-field appearance="outline">
+  <mat-label>Type d'allergie </mat-label>
+  <input formControlName="type_allergie" matInput placeholder="Type"/>
+</mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Déclarée le </mat-label>
+  <input formControlName="declaree_allergie" matInput [matDatepicker]="picker1" >
+  <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+  <mat-datepicker #picker1></mat-datepicker>
+</mat-form-field>
+<mat-form-field appearance="outline">
+<mat-label>Traitement suivi </mat-label>
+<input formControlName="traitement" matInput placeholder="Traitement"/>
+</mat-form-field>
+<mat-form-field appearance="outline">
+<mat-label>Médecin traitant </mat-label>
+<input formControlName="med_tret" matInput placeholder="Médecin traitant">
+</mat-form-field>
+ <!--Puberté-->
+ <h4 mat-dialog-title>PUBERTE</h4>
+ <mat-form-field appearance="outline">
+  <mat-label>Age aux premiéres régles</mat-label>
+  <input formControlName="age_pub" matInput type="number"/>
+</mat-form-field>
+<mat-form-field appearance="outline">
+<mat-label>Problémes de santé rencontrés</mat-label>
+<input formControlName="prob" matInput placeholder="Problémes">
+</mat-form-field>
+<!--medicaux et chirurgicaux-->
+<!--<section class="example-section" [formGroup]="maladie" >
+  <h4 mat-dialog-title>ANTECEDENTS MEDICAUX ET CHIRURGICAUX: </h4>
+  <p><mat-checkbox formControlName="Diabéte">Diabéte</mat-checkbox></p>
+  <p><mat-checkbox formControlName="Cardiopathie">Cardiopathie</mat-checkbox></p>
+  <p><mat-checkbox formControlName="Insuffisance_rénale_chronique">Insuffisance rénale chronique</mat-checkbox></p>
+  <p><mat-checkbox formControlName="Asthme">Asthme</mat-checkbox></p>
+  <p><mat-checkbox formControlName="Anémie">Anémie</mat-checkbox></p>
+  <p><mat-checkbox formControlName="Hépatite_C">Hépatite_C</mat-checkbox></p>
+  <p><mat-checkbox formControlName="Hépatite_B">Hépatite_B</mat-checkbox></p>
+</section>-->
+<mat-form-field appearance="outline">
+  <mat-label>Autres </mat-label>
+  <input formControlName="maladie" matInput placeholder="Autre"/>
+  </mat-form-field>
+<!--Antecedents familiaux-->
+<h4 mat-dialog-title>ANTECEDENTS FAMILIAUX</h4>
+<mat-form-field appearance="outline">
+  <mat-label></mat-label>
+  <textarea formControlName="maladieF" matInput></textarea>
+</mat-form-field>
+   <!--Handicap-->
+   <h4 mat-dialog-title>HANDICAP</h4>
+   <mat-form-field appearance="outline">
+    <mat-label>Types</mat-label>
+    <input formControlName="type_allergie" matInput placeholder="Type"/>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Déclarée le </mat-label>
+    <input formControlName="declaree_allergie" matInput [matDatepicker]="picker2" >
+    <mat-datepicker-toggle matIconSuffix [for]="picker2" ></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+ <!--Satut vaccinal-->  
+ <h4 mat-dialog-title>STATUT VACCINAL</h4>
+ <p> Premiére prise</p>
+  <mat-form-field appearance="fill">
+  <mat-label>Date </mat-label>
+  <input formControlName="date_vaccin1" matInput [matDatepicker]="picker3" >
+  <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
+  <mat-datepicker #picker3></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+ <mat-label>Lieu</mat-label>
+  <input formControlName="lieu_vaccin1" matInput/>
+</mat-form-field>
+<p> Deuxiéme prise</p>
+<mat-form-field appearance="fill">
+<mat-label>Date </mat-label>
+<input formControlName="date_vaccin2" matInput [matDatepicker]="picker4" >
+<mat-datepicker-toggle matIconSuffix [for]="picker4"></mat-datepicker-toggle>
+<mat-datepicker #picker4></mat-datepicker>
+</mat-form-field>
+<mat-form-field appearance="outline">
+<mat-label>Lieu</mat-label>
+<input formControlName="lieu_vaccin2" matInput />
+</mat-form-field>
+<p>Troisiéme prise</p>
+<mat-form-field appearance="fill">
+<mat-label>Date </mat-label>
+<input formControlName="date_vaccin3" matInput [matDatepicker]="picker5" >
+<mat-datepicker-toggle matIconSuffix [for]="picker5"></mat-datepicker-toggle>
+<mat-datepicker #picker5></mat-datepicker>
+</mat-form-field>
+<mat-form-field appearance="outline">
+<mat-label>Lieu</mat-label>
+<input formControlName="lieu_vaccin3" matInput />
+</mat-form-field>
+<p> Quatriéme prise</p>
+<mat-form-field appearance="fill">
+<mat-label>Date </mat-label>
+<input formControlName="date_vaccin4" matInput [matDatepicker]="picker6" >
+<mat-datepicker-toggle matIconSuffix [for]="picker6"></mat-datepicker-toggle>
+<mat-datepicker #picker6></mat-datepicker>
+</mat-form-field>
+<mat-form-field appearance="outline">
+<mat-label>Lieu</mat-label>
+<input formControlName="lieu_vaccin4" matInput />
+</mat-form-field>
+<p> Cinquiéme prise</p>
+<mat-form-field appearance="fill">
+<mat-label>Date </mat-label>
+<input formControlName="date_vaccin5" matInput [matDatepicker]="picker7" >
+<mat-datepicker-toggle matIconSuffix [for]="picker7"></mat-datepicker-toggle>
+<mat-datepicker #picker7></mat-datepicker>
+</mat-form-field>
+<mat-form-field appearance="outline">
+<mat-label>Lieu</mat-label>
+<input formControlName="lieu_vaccin5" matInput />
+</mat-form-field>
+  <!--vaccination contre la Rubéole-->
+  <p mat-dialog-title>Vaccination contre la Rubéole</p>
+  <mat-form-field appearance="fill">
+  <mat-label>Date </mat-label>
+  <input formControlName="date_rubeole" matInput [matDatepicker]="picker8" >
+  <mat-datepicker-toggle matIconSuffix [for]="picker8"></mat-datepicker-toggle>
+  <mat-datepicker #picker8></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+  <mat-label>Lieu</mat-label>
+  <input formControlName="lieu_rubeole" matInput />
+  </mat-form-field>
+  <!--autre vaccination-->
+  <mat-form-field appearance="outline">
+    <mat-label>Autres vaccinations</mat-label>
+    <textarea formControlName="autre_vaccin" matInput></textarea>
+</mat-form-field>
+
+    </form>
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addCarnet()" routerLink="/carnet" >Save</button>
+
+</div>
+
+</div>
