@@ -6,9 +6,11 @@ const patienteSchema = new mongoose.Schema({
     nomP: {type: String, required: true },
     prenomP: {type: String, required: true },
     tel: {type: Number, required: true },
+    email: {type:String, required: true },
     naissance: {type: Date, required: true },
     password: {type: String, required: true },
     role: {type: String, default: Role.Patiente},
+    emailToken: String,
 })
 
 module.exports = mongoose.model("patiente", patienteSchema);

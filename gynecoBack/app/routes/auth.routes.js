@@ -3,11 +3,10 @@ const router = express.Router();
 const authController = require("../controllers/auth.controller");
 const passController = require("../controllers/forgetpass.controller");
 
-router.post("/signup", authController.signup)
-router.post("/signin", authController.signin) 
+router.post("/signup", authController.signup);
+router.post("/signin", authController.signin) ;
 //resetPassword
-router.post("/ResetPassword", passController.ResetPassword)
-router.post("/ValidPasswordToken", passController.ValidPasswordToken)
-router.post("/NewPassword", passController.NewPassword)
-
+router.post("/ResetPassword", passController.ResetPassword);
+router.get("/ValidPasswordToken/:patienteId/:resettoken", passController.ValidPasswordToken);
+router.post("/NewPassword/:patienteId/:resettoken", passController.NewPassword);
 module.exports = router;

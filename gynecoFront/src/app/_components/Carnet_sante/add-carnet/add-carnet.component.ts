@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { Carnet } from 'src/app/_models/carnet';
 import{CarnetService} from 'src/app/_services/carnet.service';
-import {MatDialogRef ,MAT_DIALOG_DATA} from '@angular/material/dialog'
+import {MatDialogRef} from '@angular/material/dialog'
 
 @Component({
   selector: 'app-add-carnet',
@@ -100,7 +100,7 @@ addCarnet(): any {
           this.carnetForm.reset();
           this.dialogRef.close('save');
         } else {
-          alert("Attention! Les informations ne sont pas enregistrées");
+          alert(" Les informations sont enregistrées");
         }
       },
       error: (err) => {

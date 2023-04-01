@@ -1,7 +1,8 @@
 import { Component,OnInit} from '@angular/core';
 import { Carnet } from 'src/app/_models/carnet';
 import{CarnetService} from 'src/app/_services/carnet.service';
-
+import {MatDialog} from '@angular/material/dialog';
+import{AddCarnetComponent} from '../add-carnet/add-carnet.component'
 @Component({
   selector: 'app-carnet',
   templateUrl: './carnet.component.html',
@@ -11,8 +12,14 @@ export class CarnetComponent implements OnInit {
 
   Carnet:any=[]; 
 
-  constructor( private C:CarnetService ) { }
+  constructor( private C:CarnetService,private dialog :MatDialog) { }
 
+  openDialog() {
+    this.dialog.open(AddCarnetComponent, {
+     width: '30%'
+
+    });
+  }
   //methode d'affichage de la liste
   listCarnet() {
     this.C.getCarnet().subscribe(

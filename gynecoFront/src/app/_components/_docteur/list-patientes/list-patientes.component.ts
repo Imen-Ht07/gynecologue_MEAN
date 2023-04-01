@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AfterViewInit, ViewChild} from '@angular/core';
+import { ViewChild} from '@angular/core';
 import { PatienteService } from 'src/app/_services/patiente.service';
 import { Patiente } from 'src/app/_models/patiente';
 import {MatPaginator} from '@angular/material/paginator';

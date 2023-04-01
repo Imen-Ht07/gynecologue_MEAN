@@ -17,37 +17,60 @@
 </head>
 <body style="background-color: rgb(231, 111, 167);">
 	<!-- [ navigation menu ] start -->
-	<nav class="pcoded-navbar menu-dark " style="background-color: rgb(138, 14, 82);">
+	<nav class="pcoded-navbar menu-dark ">
 		<div class="navbar-wrapper  ">
 			<div class="navbar-content scroll-div " >
 				<div >
 					<div class="main-menu-header">
-						<img class="img-radius" src="/assets/admin/images/user/avatar-2.jpg" alt="User-Profile-Image">
+						<img class="img-radius" src="/assets/img/gyne.png" alt="User-Profile-Image">
 						<div class="user-details">
 							<div id="more-details">Docteur Nesrine Machat <i class="fa fa-caret-down"></i>
-                                <p><span class="online_animation" id="actif"></span> Actif</p></div>
+                            </div>
 						</div>
 					</div>
 				</div>
 <br><br>
 				<ul class="nav pcoded-inner-navbar "id="tit1">
 					<li class="nav-item">
-					    <a href="admin/dashboard" class="nav-link "><span class="pcoded-micon">
-                      <i class="feather icon-home"></i></span>
+					    <a href="admin/dashboard" class="nav-link "><span>
+                      <img src="/assets/icons/home.png" class="icon"></span>
                       <span class="pcoded-mtext">Tableau de bord</span></a>
 					</li>
-
+                    
                <li class="nav-item pcoded-hasmenu">
-                  <a href="/admin/listP" class="nav-link "><span class="pcoded-micon">
-                     <i class="fa fa-users"></i></span>
+                  <a href="/admin/listP" class="nav-link "><span>
+                     <img src="/assets/icons/woman.png"  class="icon"></span>
                      <span class="pcoded-mtext">Gérer les patientes</span></a>
                   <ul class="pcoded-submenu">
                       <li><a href="admin/listP" target="_blank">Liste des patientes</a></li>
                   </ul>
               </li>
+              <li class="nav-item pcoded-hasmenu">
+                <a href="/admin/recl" class="nav-link "><span>
+                   <img src="/assets/icons/rendez.png" class="icon"></span>
+                   <span class="pcoded-mtext">Gérer les rendez-vous</span></a>
+                <ul class="pcoded-submenu">
+                    <li><a href="admin/recl" target="_blank">Consulter les rendez-vous</a></li>
+                </ul>
+              <li class="nav-item pcoded-hasmenu">
+                <a href="/admin/listP" class="nav-link "><span>
+                   <img src="assets/icons/medica.png"  class="icon" ></span>
+                   <span class="pcoded-mtext">Gérer les médicaments</span></a>
+                <ul class="pcoded-submenu">
+                    <li><a href="admin/listP" target="_blank">Liste des médicaments</a></li>
+                </ul>
+            </li>
+            <li class="nav-item pcoded-hasmenu">
+                <a href="/admin/listP" class="nav-link "><span>
+                   <img src="/assets/icons/analysee.png" class="icon"></span>
+                   <span class="pcoded-mtext">Gérer les analyses</span></a>
+                <ul class="pcoded-submenu">
+                    <li><a href="admin/listP" target="_blank">Liste des analyses</a></li>
+                </ul>
+            </li>
         <li class="nav-item pcoded-hasmenu">
-            <a href="/admin/recl" class="nav-link "><span class="pcoded-micon">
-               <i class="fa fa-file-text"></i></span>
+            <a href="/admin/recl" class="nav-link "><span>
+                <img src="/assets/icons/msg.png" class="icon"></span>
                <span class="pcoded-mtext">Gérer les réclamations</span></a>
             <ul class="pcoded-submenu">
                 <li><a href="admin/recl" target="_blank">Consulter les réclamations</a></li>
@@ -139,72 +162,57 @@
         <!-- [ breadcrumb ] end -->
         <!-- [ Main Content ] start -->
         <div class="row">
-           
-            <div class="col-lg-12 col-md-12">
-                <!-- page statustic card start -->
-                    <div class="col-sm-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-8">
-                                        <h1 class="text-c-green">{{ nbrP }}</h1>
-                                        <h3 class="text-muted m-b-0">Patientes</h3>
-                                    </div>
-                                    <div class="col-4 text-right">
-                                        <i class="feather icon-file-text f-28"></i>
-                                    </div>
-                                </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-8">
+                                <h1 class="text-c-green">{{ nbrP }}</h1>
+                                <h3 class="text-muted m-b-0">Patientes</h3>
                             </div>
-                            <div class="card-footer bg-c-green">
-                                <div class="row align-items-center">
-                                    <div class="col-9">
-                                        <a href="admin/listP" class="text-white m-b-0">
-                                           Consulter les patientes</a>
-                                    </div>
-                                    <div class="col-3 text-right">
-                                        <i class="feather icon-trending-up text-white f-16"></i>
-                                    </div>
-                                </div>
+                            <div class="col-4 text-right">
+                                    <img src="/assets/icons/woman.png" >
                             </div>
                         </div>
                     </div>
-              <!-- page statustic card end -->
+                    <div class="card-footer bg-c-green">
+                        <div class="row align-items-center">
+                            <div class="col-9">
+                                <a href="admin/listP" class="text-white m-b-0">Consulter les patientes</a>
+                            </div>
+                            <div class="col-3 text-right">
+                                <i class="feather icon-trending-up text-white f-16"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-                        <div class="col-xl-6 col-md-12">
-                <div class="card latest-update-card">
-                    <div class="card-header">
-                        <h5>Latest Updates</h5>
-                        <div class="card-header-right">
-                            <div class="btn-group card-option">
-                                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="feather icon-more-horizontal"></i>
-                                </button>
-                                <ul class="list-unstyled card-option dropdown-menu dropdown-menu-right">
-                                    <li class="dropdown-item full-card"><a href="#!"><span><i class="feather icon-maximize"></i> maximize</span><span style="display:none"><i class="feather icon-minimize"></i> Restore</span></a></li>
-                                    <li class="dropdown-item minimize-card"><a href="#!"><span><i class="feather icon-minus"></i> collapse</span><span style="display:none"><i class="feather icon-plus"></i> expand</span></a></li>
-                                    <li class="dropdown-item reload-card"><a href="#!"><i class="feather icon-refresh-cw"></i> reload</a></li>
-                                    <li class="dropdown-item close-card"><a href="#!"><i class="feather icon-trash"></i> remove</a></li>
-                                </ul>
+            <div class="col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-8">
+                                <h1 class="text-c-green">{{ nbrP}}</h1>
+                                <h3 class="text-muted m-b-0">rendez-vous</h3>
+                            </div>
+                            <div class="col-4 text-right">
+                                <img src="/assets/icons/rendez.png">
                             </div>
                         </div>
                     </div>
-          
-                            <div class="col">
-                                <a href="#!">
-                                    <h2>+{{ nbrP }} patientes </h2>
-                                </a>
-                                <p class="text-muted m-b-0">Vous avez de plus en plus de Patientes, continuez comme ça !</p>
+                    <div class="card-footer bg-c-green">
+                        <div class="row align-items-center">
+                            <div class="col-9">
+                                <a href="admin/listR" class="text-white m-b-0">Consulter les rendez-vous</a>
+                            </div>
+                            <div class="col-3 text-right">
+                                <i class="feather icon-trending-up text-white f-16"></i>
                             </div>
                         </div>
-                        <div class="row p-t-30 p-b-30">
-                            <div class="col-auto text-right update-meta">
-                                <p class="text-muted m-b-0 d-inline-flex"></p>
-                                <i class="feather icon-file-plus bg-twitter update-icon"></i>
-                            </div>
-
-        <!-- [ Main Content ] end -->
-    </div>
-</div> 
+                    </div>
+                </div>
+            </div>   
+        <!-- [ Main Content ] end --> 
     <!-- Required Js -->
     <script src="/assets/admin/js/vendor-all.min.js"></script>
     <script src="/assets/admin/js/plugins/bootstrap.min.js"></script>

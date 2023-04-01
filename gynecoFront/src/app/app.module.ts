@@ -6,21 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//components
-import { LoginComponent } from './_components/login/login.component';
-import { HomeComponent } from './_components/home/home.component';
-import { DocServiceComponent } from './_components/doc-service/doc-service.component';
-import { BlogComponent } from './_components/blog/blog.component';
-//docteur
-import { DashboardComponent } from './_docteur/dashboard/dashboard.component';
-import { ListPatientesComponent } from './_docteur/list-patientes/list-patientes.component';
-import { OrdonnanceComponent } from './_docteur/ordonnance/ordonnance.component'; 
-import { AddPatComponent } from './_components/add-pat/add-pat.component';
-import { AddCarnetComponent } from './_components/Carnet_sante/add-carnet/add-carnet.component';
-import { UpdcarnetComponent } from './_components/Carnet_sante/updcarnet/updcarnet.component';
-//patiente 
-import { CarnetComponent } from './_components/Carnet_sante/carnet/carnet.component';
-import { ViewCarnetComponent } from './_components/Carnet_sante/view-carnet/view-carnet.component';
+import { RouterModule} from '@angular/router';
 //angular/material
 
 import { CommonModule } from '@angular/common';
@@ -62,6 +48,31 @@ import{MatDialogModule } from '@angular/material/dialog';
 // angular full calendar 
 
 import { FullCalendarModule } from '@fullcalendar/angular';
+//filter 
+import { NgPipesModule } from 'ngx-pipes';
+import { FilterPipeModule } from 'ngx-filter-pipe';
+import { FilterPipe } from './filter.pipe';
+//components
+import { ResponseResetComponent } from './_components/response-reset/response-reset.component';
+import { RequestResetComponent } from './_components/request-reset/request-reset.component';
+import { LoginComponent } from './_components/login/login.component';
+import { HomeComponent } from './_components/home/home.component';
+import { DocServiceComponent } from './_components/doc-service/doc-service.component';
+import { BlogComponent } from './_components/blog/blog.component';
+//docteur
+import { DashboardComponent } from './_components/_docteur/dashboard/dashboard.component';
+import { ListPatientesComponent } from './_components/_docteur/list-patientes/list-patientes.component';
+import { OrdonnanceComponent } from './_components/_docteur/ordonnance/ordonnance.component'; 
+import { AddPatComponent } from './_components/_docteur/add-pat/add-pat.component';
+import { AddCarnetComponent } from './_components/Carnet_sante/add-carnet/add-carnet.component';
+import { UpdcarnetComponent } from './_components/Carnet_sante/updcarnet/updcarnet.component';
+//patiente 
+import { CarnetComponent } from './_components/Carnet_sante/carnet/carnet.component';
+import { ViewCarnetComponent } from './_components/Carnet_sante/view-carnet/view-carnet.component';
+import { ChangePassComponent } from './_components/change-pass/change-pass.component';
+import { AddMedicComponent } from './_components/_docteur/add-medic/add-medic.component';
+import { ListMedicComponent } from './_components/_docteur/list-medic/list-medic.component';
+
 
 
 const materialModules = [
@@ -116,7 +127,11 @@ const materialModules = [
     BlogComponent,
     OrdonnanceComponent,
     AddPatComponent,
-    
+    ResponseResetComponent,
+    RequestResetComponent,
+    ChangePassComponent,
+    AddMedicComponent,
+    ListMedicComponent,
     
   ],
   imports: [
@@ -128,8 +143,11 @@ const materialModules = [
     BrowserAnimationsModule,
     CommonModule,
     materialModules,
-    FullCalendarModule
-  ],
+    FullCalendarModule,
+    RouterModule, 
+    NgPipesModule,
+    FilterPipeModule,
+  ], 
   providers: [],
   bootstrap: [AppComponent]
 })

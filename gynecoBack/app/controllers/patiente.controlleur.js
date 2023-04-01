@@ -13,6 +13,7 @@ exports.savepatiente = async (req, res, next) => {
         nomP: req.body.nomP,   
         prenomP: req.body.prenomP,
         tel: req.body.tel,
+        email:req.body.email,
         naissance:req.body.naissance,
         password: hashedPassword,
     });
@@ -58,22 +59,12 @@ exports.delete = (req, res) => {
 };
 
 //get by Id
-exports.get = (req, res) => {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    return res.status(400).json({ message: "Invalid ID" });
-  }
-
-  Patiente.findOne({ _id: req.params.id })
-    .then((patiente) => {
-      if (!patiente) {
-        return res.status(404).json({ message: "Patiente not found" });
-      }
-      res.status(200).send(patiente);
-    })
-    .catch((error) => {
-      console.log(error);
-      res.status(500).json({ message: "Server error" });
-    });
+exports.getID = (req, res) => {
+  Patiente.findById({ _id: req.params.id })
+  .then((Patiente) => {
+      res.status(200).send(Patiente)
+  })
+  .catch((error) => { console.log(error) });
 };
 
 //fonction count
@@ -84,52 +75,30 @@ exports.get = (req, res) => {
         } else {
           res.json(st); 
         }
-      });
+      });};
+    // Endpoint pour la mise à jour du mot de passe
+    exports.ChangePassword = async (req, res) =>{
+  try {
+    // Récupérer l'utilisateur par l'ID
+    const user = await Patiente.findByIdAndUpdate(req.params.id);
+    // Vérifier si l'ancien mot de passe correspond
+    const isMatch = await bcrypt.compare(req.body.oldPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ msg: 'Le mot de passe actuel est incorrect' });
     }
-   
-    //refuser demande d'inscription patiente
-    exports.refuser = (req, res) => {
-      Patiente.findById({ _id: req.params.id })
-        .then((patiente) => {
-          if (!patiente) {
-            return res.status(404).send("Patiente not found");
-          }
-    
-          if (patiente.isVerified) {
-            return res.status(400).send("Patiente is already verified");
-          }
-    
-          return patiente.remove();
-        })
-        .then(() => {
-          res.status(204).send();
-        })
-        .catch((error) => {
-          console.log(error);
-          res.status(500).send("An error occurred");
-        });
-    };
-    //accepter demande d'inscription patiente
-    exports.accept = (req, res) => {
-      Patiente.findById({ _id: req.params.id })
-        .then((patiente) => {
-          if (!patiente) {
-            return res.status(404).send("Patiente not found");
-          }
-    
-          if (patiente.isVerified) {
-            return res.status(400).send("Patiente is already verified");
-          }
-    
-          patiente.isVerified = true;
-          return patiente.save();
-        })
-        .then(() => {
-          res.status(200).send("Patiente verified successfully");
-        })
-        .catch((error) => {
-          console.log(error);
-          res.status(500).send("An error occurred");
-        });
-    };
+
+    // Générer le hash du nouveau mot de passe
+    const salt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(req.body.newPassword, salt);
+
+    // Mettre à jour le mot de passe
+    user.password = hashPassword;
+    await user.save();
+
+    res.json({ msg: 'Le mot de passe a été mis à jour avec succès' });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Erreur serveur');
+  }
+}
     

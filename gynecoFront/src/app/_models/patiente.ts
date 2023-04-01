@@ -3,9 +3,11 @@ export class Patiente {
     nomP!: String;
     prenomP!: String;
     tel!:Number;
+    email!:String;
     naissance!:Date;
     userName!: String;
     password!: String;
     role!: String;
+    emailToken!:String;
 }
 

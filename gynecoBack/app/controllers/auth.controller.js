@@ -3,7 +3,7 @@ const Patiente = require('../models/patiente.model');
 const Secretaire = require('../models/secretaire.model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcryptjs");
-const {secret} = require('../middleware/auth.config');
+const { secret } = require('../middleware/auth.config');
 
 exports.signup = async (req, res) => {
   try {
@@ -25,22 +25,46 @@ exports.signin = async (req, res) => {
     const user = await User.findOne({ userName: req.body.userName });
 
     if (!user) {
-      if (Secretaire) {
-        bcrypt.compare(
-          req.body.password,
-          Secretaire.password,
-          function (err, isMatch) {
+      const secretaire = await Secretaire.findOne({ userName: req.body.userName });
+      if (secretaire) {
+        bcrypt.compare(req.body.password, secretaire.password, function (err, isMatch) {
+          if (isMatch && !err) {
+            var token = jwt.sign(
+              { _id: secretaire._id, role: secretaire.role },
+              secret
+            );
+            res.json({
+              success: true,
+              token: token,
+              role: "secretaire",
+              user: secretaire,
+            });
+          } else {
+            res.send({
+              success: false,
+              msg: "Authentication failed. Wrong password.",
+            });
+          }
+        });
+      } else {
+        const patiente = await Patiente.findOne({ userName: req.body.userName });
+        if (!patiente) {
+          res.send({
+            success: false,
+            msg: "Authentication failed. User not found.",
+          });
+        } else {
+          bcrypt.compare(req.body.password, patiente.password, function (err, isMatch) {
             if (isMatch && !err) {
               var token = jwt.sign(
-                { _id: Secretaire._id, role: Secretaire.role },
+                { _id: patiente._id, role: patiente.role },
                 secret
               );
-
               res.json({
                 success: true,
                 token: token,
-                role: "secretaire",
-                user: user,
+                role: "patiente",
+                user: patiente,
               });
             } else {
               res.send({
@@ -48,46 +72,13 @@ exports.signin = async (req, res) => {
                 msg: "Authentication failed. Wrong password.",
               });
             }
-          }
-        );
-      } else {
-        if (!Patiente) {
-          res.send({
-            success: false,
-            msg: "Authentication failed. User not found.",
           });
-        } else {
-          bcrypt.compare(
-            req.body.password,
-            Patiente.password,
-            function (err, isMatch) {
-              if (isMatch && !err) {
-                var token = jwt.sign(
-                  { _id: Patiente._id, role: Patiente.role },
-                  secret
-                );
-
-                res.json({
-                  success: true,
-                  token: token,
-                  role: "patiente",
-                  user: user,
-                });
-              } else {
-                res.send({
-                  success: false,
-                  msg: "Authentication failed. Wrong password.",
-                });
-              }
-            }
-          );
         }
       }
     } else {
       bcrypt.compare(req.body.password, user.password, function (err, isMatch) {
         if (isMatch && !err) {
           var token = jwt.sign({ _id: user._id, role: user.role }, secret);
-
           res.json({
             success: true,
             token: token,

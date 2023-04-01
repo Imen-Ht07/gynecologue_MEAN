@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { User } from '../_models/user';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { Patiente } from '../_models/patiente';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +14,7 @@ import { Router } from '@angular/router';
 export class UserService {
   currentUser!: User;
   name!: String;
+  currentPatiente!: Patiente;
   constructor(private http: HttpClient, private router: Router) { 
       
     }
@@ -20,16 +24,23 @@ export class UserService {
     localStorage.clear()
     window.location.reload()
   }
-  login(User: User): Observable<any> {
-    return this.http.post<User[]>(`${this.API_URI}/signin`, User)
-    .pipe(map(User => {
-      localStorage.setItem('User', JSON.stringify(User));
-      return User;
-      
-    }));
-
+  login(user: User): Observable<any> {
+    return this.http.post(`${this.API_URI}/signin`, user).pipe(
+      map(response => {
+        const data = response as any;
+        const token = data.token;
+        const role = data.role;
+        localStorage.setItem('token', token);
+        localStorage.setItem('role', role);
+        return response;
+      }),
+      catchError(error => {
+        const errorMessage = error.message || 'Something went wrong. Please try again later.';
+        return throwError(errorMessage);
+      })
+    );
   }
-
+  
   logout() {
     localStorage.removeItem('User');
     this.router.navigate(['/login']);
@@ -45,14 +56,12 @@ export class UserService {
     return this.http.post(`${this.API_URI}/ResetPassword`, body);
   }
 
-  newPassword(body:any): Observable<any> {
-    return this.http.post(`${this.API_URI}/ValidPasswordToken`, body);
+  //newPassword(resettoken:any, patienteId:any): Observable<any> {
+  //  return this.http.post(`${this.API_URI}/NewPassword/${patienteId}/${resettoken}`);
+ // }
+
+  ValidPasswordToken(resettoken:any, patienteId:any): Observable<any> {
+    return this.http.get(`${this.API_URI}/ValidPasswordToken${patienteId}/${resettoken}`);
   }
 
-  ValidPasswordToken(body:any): Observable<any> {
-    return this.http.post(`${this.API_URI}/NewPassword`, body);
-  }
-
-  
- 
 }

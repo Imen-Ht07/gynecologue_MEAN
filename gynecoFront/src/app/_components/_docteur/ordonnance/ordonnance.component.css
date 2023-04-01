@@ -32,13 +32,13 @@ body {
 }
 h1 {
     font-size: 16pt;
-    text-align: center;
     margin: 0;
     padding: 10px;
-    border-bottom: 1px solid black;
 }
-h2 {
-    font-size: 14pt;
+h3{
+    font-size: 12pt;
+    margin: 0;
+    padding: 10px;
 }
 table {
     border-collapse: collapse;

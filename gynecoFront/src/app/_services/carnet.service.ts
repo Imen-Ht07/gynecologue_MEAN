@@ -93,9 +93,6 @@ getDefaultImage(): File {
       }
 
 //modifier
-update(id: any, data: any): Observable<any> {
-  return this.http.put(`${this.API_URI}/${id}`, data);
-}
 updateCarnet(id: any, data: any): Observable<any> {
     
   return this.http.put<Carnet>(`${this.API_URI}/update/${id}`, data);
