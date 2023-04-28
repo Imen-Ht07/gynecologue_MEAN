@@ -20,19 +20,20 @@
 	</header>
 	<main>
 		<label for="drug">Médicament:</label>
-		<input type="text" id="drug" [(ngModel)]="selectedDrug" (change)="onFilter(selectedDrug)">
-		<ul *ngIf="filteredDrugs.length">
-			<li *ngFor="let drug of filteredDrugs | filter:selectedDrug">
-				<a href="#" (click)="onSelect(drug)">{{drug.drugName}}</a>
+		<input type="text" class="form-control" [(ngModel)]="searchTerm" (input)="readOrd(searchTerm)">
+		<ul>
+			<li *ngFor="let drug of drug">
+				<div (click)="onSelect(drug)">{{drug.drugName}} {{drug.dosage}}</div>
 			</li>
 		</ul>
+		<button> </button>
 	</main>
 	<footer class="footer">
 		<p>عمارة العروس - الطابق 3 شارع الهادي شاكر ـ طريق السينما (امام مونوبري اكسبراس) 8000 نابل</p>
 		<p>Av hedi chaker devant monoprix express ex touta Immeuble larous 3ème étage 8000 Nabeul Tunisie</p>
 		<div>
-			<i class="fas fa-phone"></i>
-			<i class="fas fa-mobile-alt"></i>
+			<i></i>
+			<i></i>
 		</div>
 	</footer>
 </body>

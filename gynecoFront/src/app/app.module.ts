@@ -51,7 +51,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 //filter 
 import { NgPipesModule } from 'ngx-pipes';
 import { FilterPipeModule } from 'ngx-filter-pipe';
-import { FilterPipe } from './filter.pipe';
+//import { Filter Pipe } from './filter.pipe';
 //components
 import { ResponseResetComponent } from './_components/response-reset/response-reset.component';
 import { RequestResetComponent } from './_components/request-reset/request-reset.component';

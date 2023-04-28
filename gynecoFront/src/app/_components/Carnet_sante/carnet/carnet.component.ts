@@ -12,14 +12,14 @@ export class CarnetComponent implements OnInit {
 
   Carnet:any=[]; 
 
-  constructor( private C:CarnetService,private dialog :MatDialog) { }
+  constructor( private C:CarnetService,/*private dialog :MatDialog*/) { }
 
-  openDialog() {
+/*  openDialog() {
     this.dialog.open(AddCarnetComponent, {
      width: '30%'
 
     });
-  }
+  }*/
   //methode d'affichage de la liste
   listCarnet() {
     this.C.getCarnet().subscribe(

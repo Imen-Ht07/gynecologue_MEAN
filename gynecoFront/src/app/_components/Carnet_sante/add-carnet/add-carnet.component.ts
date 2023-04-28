@@ -2,8 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { Carnet } from 'src/app/_models/carnet';
 import{CarnetService} from 'src/app/_services/carnet.service';
-import {MatDialogRef} from '@angular/material/dialog'
-
+//import {MatDialogRef} from '@angular/material/dialog';
 @Component({
   selector: 'app-add-carnet',
   templateUrl: './add-carnet.component.html',
@@ -13,6 +12,7 @@ export class AddCarnetComponent  implements OnInit{
   photo: any = null; 
    carnet!:Carnet;
   carnetForm!:FormGroup;
+
 //radiobox
   couvertureList= ["Oui","Non"];
 sangList=["A","B","AB","O"];
@@ -30,7 +30,7 @@ maladie = this._formBuilder.group({
 constructor (private C:CarnetService, 
                    private _formBuilder : FormBuilder,
                   private formBuilder : FormBuilder,
-                  private dialogRef : MatDialogRef<AddCarnetComponent>) {
+                  /*private dialogRef : MatDialogRef<AddCarnetComponent>*/) {
                                  
 this.carnetForm = this.formBuilder.group({
   //femme
@@ -80,33 +80,33 @@ this.carnetForm = this.formBuilder.group({
 })};
 ngOnInit(): void{  }
 
-loadImage(photo: any) {
+onFileSelected(photo: any) {
+  if (photo.target.files && photo.target.files[0]) {
+    this.photo = photo.target.files[0];
+    console.log(this.photo);
+}
+}
+
+
+/*loadImage(photo: any) {
   if (photo.target.files && photo.target.files[0]) {
     this.photo = photo.target.files[0];
     console.log(this.photo);
   } else {
     // Set a default picture if no photo was selected
-    this.photo = 'src/assets/image/default.jpg';
+    this.photo = '/assets/image/default.jpg';
   }
-}
-
+}*/
 addCarnet(): any {
-    const photo = this.photo || ''; // utilise une chaîne de caractères vide si photo est indéfini
-    this.C.addCarnet(this.carnetForm.value, photo)
+    this.C.addCarnet(this.carnetForm.value,this.photo)
     .subscribe({
       next: (response) => {
         if (response.success) {
           alert("Les informations sont enregistrées avec succès");
           this.carnetForm.reset();
-          this.dialogRef.close('save');
+          //this.dialogRef.close('save');
         } else {
-          alert(" Les informations sont enregistrées");
+          alert(" Les informations ne sont pas enregistrées");
         }
-      },
-      error: (err) => {
-        alert("Attention! Les informations ne sont pas enregistrées");
-        console.error(err); // affiche l'erreur dans la console pour le débogage
-      }
-    });
-}
-  }
+    }})
+}}

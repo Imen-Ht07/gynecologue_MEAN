@@ -22,40 +22,19 @@ exports.saveDrug = (req, res) => {
       });
     });
   };
- // ajout de medic
-exports.saveDrugOrd = (req, res) => {
-  const medic= new Drug({
-  drugName:req.body.drugName,
-  dosage:req.body.dosage,
-  description:req.body.description,
-  effetSec:req.body.effetSec,
-  });
-  console.log(medic);
-
-  medic.save((err, newDrug) => {
-    if (err) {
-      return res.status(401).json({
-        ok: false,
-        err,
-      });
-    }
-    res.status(201).json({
-      ok: true,
-      medic: newDrug,
-    });
-  });
-};
+ 
 
 //select all
 exports.listDrug = (req, res) => {
-    Drug.find({})
-        .then((lists) => {
-            res.status(200).send(lists);
-        })
-        .catch((error) => {
-            console.log(error);
-            res.status(500);
-        });
+  const { drugName } = req.query;
+  const query = drugName? { nom: { $regex: new RegExp(drugName), $options: 'i' } } : {};
+    Drug.find(query,(error, data) => {
+      if (error) {
+        return next(error);
+      } else {
+        res.json(data);
+      }
+    });
 };
 //Update 
 exports.updateDrug = (req, res) => {
@@ -83,11 +62,3 @@ exports.deleteAllDrug = (req, res) => {
       .then(medic=> res.status(200).json(medic))
       .catch(error => res.status(404).json({ error }));
   };
-  //get par ID (Find a single data)
-  exports.getDrugID = (req, res) => {
-     Drug.findById({ _id: req.params.id })
-        .then((medic) => {
-            res.status(200).send(medic)
-        })
-        .catch((error) => { console.log(error) });
-}

@@ -65,7 +65,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "gynecoFront:build:production"
+              "browserTarget": "your-application-name:production"
             },
             "development": {
               "browserTarget": "gynecoFront:build:development"

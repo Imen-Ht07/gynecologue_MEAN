@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Carnet} from '../_models/carnet';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -25,15 +24,12 @@ find(id: any): Observable<any> {
 
 addCarnet(newCarnet:any, photo: File): Observable<any> {
   const fd = new FormData();
-  if (photo) {
-    console.log("Uploading selected image...");
-    fd.append('photo', photo, photo.name);
-  } else {
-    console.log("No image selected. Uploading default image...");
-    // Use default image if no file is selected
-    fd.append('photo', this.getDefaultImage());
-  
-  }
+  if(photo){
+      fd.append('photo', photo, photo.name);
+      console.log("Uploading selected DICOM file...");
+    }else{
+      console.log("No DICOM file selected.");
+    }
     fd.append('nom',newCarnet.nom);
      fd.append('prenom',newCarnet.prenom);
      fd.append('adresse',newCarnet.adresse);
@@ -76,17 +72,15 @@ addCarnet(newCarnet:any, photo: File): Observable<any> {
      fd.append('prenomM',newCarnet.prenomM);
      fd.append('telM',newCarnet.telM);
    
-
-
-
   return this.http.post<Carnet>(`${this.API_URI}/save`, fd);
 }
-getDefaultImage(): File {
+
+/*getDefaultImage(): File {
   // This assumes that you have a default image named 'default.jpg' in your assets folder.
   const path = 'assets/image/default.jpg';
   const file = new File([], path, { type: 'image/jpeg' });
   return file;
-}
+}*/
   //supression
     deleteCarnet(id:String) {
       return this.http.delete(`${this.API_URI}/delete/${id}`);

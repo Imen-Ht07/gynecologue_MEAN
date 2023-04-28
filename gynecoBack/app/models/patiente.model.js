@@ -10,7 +10,6 @@ const patienteSchema = new mongoose.Schema({
     naissance: {type: Date, required: true },
     password: {type: String, required: true },
     role: {type: String, default: Role.Patiente},
-    emailToken: String,
 })
 
 module.exports = mongoose.model("patiente", patienteSchema);

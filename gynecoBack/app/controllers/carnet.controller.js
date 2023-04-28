@@ -1,8 +1,9 @@
 const Carnet = require("../models/carnet_santé");
+
 // ajout de carnet qui contient "photo" 
 exports.saveCarnet = (req, res) => {
     const carnet= new Carnet({
-    photo : req.file ? req.file.path : 'uploads/default.jpg',
+    photo : req.file.path,
     nom: req.body.nom,
     prenom: req.body.prenom,
     adresse:req.body.adresse,
@@ -59,7 +60,7 @@ exports.saveCarnet = (req, res) => {
       });
     });
   };
- 
+
 //select all
 exports.listCarnet = (req, res) => {
     Carnet.find({})
