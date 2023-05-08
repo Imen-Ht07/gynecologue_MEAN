@@ -68,11 +68,10 @@ import { AddCarnetComponent } from './_components/Carnet_sante/add-carnet/add-ca
 import { UpdcarnetComponent } from './_components/Carnet_sante/updcarnet/updcarnet.component';
 //patiente 
 import { CarnetComponent } from './_components/Carnet_sante/carnet/carnet.component';
-import { ViewCarnetComponent } from './_components/Carnet_sante/view-carnet/view-carnet.component';
 import { ChangePassComponent } from './_components/change-pass/change-pass.component';
 import { AddMedicComponent } from './_components/_docteur/add-medic/add-medic.component';
 import { ListMedicComponent } from './_components/_docteur/list-medic/list-medic.component';
-
+import { httpInterceptorProviders } from './_helpers/http.interceptor';
 
 
 const materialModules = [
@@ -120,7 +119,6 @@ const materialModules = [
     CarnetComponent,
     AddCarnetComponent,
     UpdcarnetComponent,
-    ViewCarnetComponent,
     DashboardComponent,
     ListPatientesComponent,
     DocServiceComponent,
@@ -132,7 +130,6 @@ const materialModules = [
     ChangePassComponent,
     AddMedicComponent,
     ListMedicComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -148,7 +145,7 @@ const materialModules = [
     NgPipesModule,
     FilterPipeModule,
   ], 
-  providers: [],
+  providers: [ httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

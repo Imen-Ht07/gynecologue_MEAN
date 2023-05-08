@@ -10,13 +10,13 @@ import{CarnetService} from 'src/app/_services/carnet.service';
 })
 export class UpdcarnetComponent implements OnInit  {
   carnets:Carnet[]=[]; 
-  photo: any = null;
+dicom: any = null;
   id!:String
 constructor(   private router : Router, private route: ActivatedRoute,private C:CarnetService, ){}
 carnetForm: Carnet = {
   _id:'',
   //femme
-  photo:'',
+dicom:'',
   nom: '',
   prenom:'',
  adresse:'',
@@ -62,9 +62,11 @@ carnetForm: Carnet = {
 }; 
 message= 'les informations sont modifiées ';
 
-loadImage(photo: any) {
-  this.photo = photo.target.files[0];
-  console.log(this.photo);
+onFileSelected(dicom: any) {
+  if (dicom.target.files && dicom.target.files[0]) {
+    this.dicom = dicom.target.files[0];
+    console.log(this.dicom);
+};
 }
 getCarnetByID(id:any): void {
   this.C.get(id)

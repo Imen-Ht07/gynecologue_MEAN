@@ -4,8 +4,9 @@
     <form [formGroup]="carnetForm" (ngSubmit)="addCarnet()">
       <mat-form-field >
         <mat-label>File input</mat-label>
-        <input matInput formControlName="photo" >
-        <input type="file" (change)="onFileSelected($event)">
+        <input matInput formControlName="dicom" >
+          <!-- DICOM file input field -->
+       <input type="file" (change)="onFileSelected($event)">
       </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Nom </mat-label>

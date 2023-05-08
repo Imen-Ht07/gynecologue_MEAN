@@ -12,6 +12,7 @@ import { Patiente } from '../_models/patiente';
   providedIn: 'root'
 })
 export class UserService {
+  loggedInStatus = false;
   currentUser!: User;
   name!: String;
   currentPatiente!: Patiente;
@@ -20,13 +21,11 @@ export class UserService {
     }
   API_URI = 'http://localhost:8080/auth';
 
-  logoutUser() {
-    localStorage.clear()
-    window.location.reload()
-  }
+
   login(user: User): Observable<any> {
     return this.http.post(`${this.API_URI}/signin`, user).pipe(
       map(response => {
+        this.loggedInStatus = true;
         const data = response as any;
         const token = data.token;
         const role = data.role;
@@ -40,10 +39,25 @@ export class UserService {
       })
     );
   }
+ logout():Observable<any> {
+    return this.http.post(`${this.API_URI}/signout`,{});}
+ 
+    
+  //BOARD 
+  getPublicContent(): Observable<any> {
+    return this.http.get(`${this.API_URI}/all`, { responseType: 'text' });
+  }
+
+  getPatienteBoard(): Observable<any> {
+    return this.http.get(`${this.API_URI}/patiente`, { responseType: 'text' });
+  }
   
-  logout() {
-    localStorage.removeItem('User');
-    this.router.navigate(['/login']);
+  getSecretaireBoard(): Observable<any> {
+    return this.http.get(`${this.API_URI}/secretaire`, { responseType: 'text' });
+  }
+
+  getDocteurBoard(): Observable<any> {
+    return this.http.get(`${this.API_URI}/docteur`, { responseType: 'text' });
   }
 
   getCurrentUser() {

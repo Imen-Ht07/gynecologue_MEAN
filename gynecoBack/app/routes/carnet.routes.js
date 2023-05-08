@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const carnetController = require("../controllers/carnet.controller");
 const multer= require("../middleware/multer");
-router.post("/save", multer.upload.single('photo'),carnetController.saveCarnet);
+router.post("/save", multer.upload.single('dicom'),carnetController.saveCarnet);
 router.get("/list", carnetController.listCarnet);
 router.put("/update/:id", carnetController.updateCarnet);
 router.delete("/delete/:id", carnetController.deleteCarnet);

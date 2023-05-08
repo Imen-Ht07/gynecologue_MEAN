@@ -22,10 +22,10 @@ find(id: any): Observable<any> {
 }
   //ajout
 
-addCarnet(newCarnet:any, photo: File): Observable<any> {
+addCarnet(newCarnet:any, dicom: File): Observable<any> {
   const fd = new FormData();
-  if(photo){
-      fd.append('photo', photo, photo.name);
+  if(dicom){
+      fd.append('dicom', dicom, dicom.name);
       console.log("Uploading selected DICOM file...");
     }else{
       console.log("No DICOM file selected.");
@@ -74,13 +74,6 @@ addCarnet(newCarnet:any, photo: File): Observable<any> {
    
   return this.http.post<Carnet>(`${this.API_URI}/save`, fd);
 }
-
-/*getDefaultImage(): File {
-  // This assumes that you have a default image named 'default.jpg' in your assets folder.
-  const path = 'assets/image/default.jpg';
-  const file = new File([], path, { type: 'image/jpeg' });
-  return file;
-}*/
   //supression
     deleteCarnet(id:String) {
       return this.http.delete(`${this.API_URI}/delete/${id}`);

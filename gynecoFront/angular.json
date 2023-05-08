@@ -32,6 +32,11 @@
 
             ],
             "scripts": [
+              "node_modules/hammerjs/hammer.min.js",
+              "node_modules/cornerstone-math/dist/cornerstoneMath.js",
+              "node_modules/cornerstone-core/dist/cornerstone.js",
+              "node_modules/cornerstone-web-image-loader/dist/cornerstoneWebImageLoader.js",
+              "node_modules/cornerstone-tools/dist/cornerstoneTools.js"
             ]
           },
           "configurations": {

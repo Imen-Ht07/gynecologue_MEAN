@@ -4,8 +4,7 @@ const Carnet = mongoose.model(
   "Carnet",
   new mongoose.Schema({
     //femme
-    _id:String,
-    photo: String,
+    dicom:String,
     nom: String,
     prenom:String,
    adresse:String,

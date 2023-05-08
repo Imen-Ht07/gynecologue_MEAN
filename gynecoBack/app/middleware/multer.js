@@ -2,7 +2,6 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const DICOM = require('dicom-parser');
-
 // Configurer multer pour télécharger des fichiers DICOM
 const storage = multer.diskStorage({
   destination: './dicom_files',
@@ -21,18 +20,8 @@ const dicomFileMiddleware = (req,res,next) => {
 
   // Convertir le contenu du fichier en tableau de bytes
   const byteArray = new Uint8Array(fileContent);
-
   // Parser le fichier DICOM
-  const dataSet = DICOM.parseDicom(byteArray);
-
-  // Accéder aux informations DICOM
-  const patientName = dataSet.string('x00100010');
-  const patientID = dataSet.string('x00100020');
-
-  // Ajouter les informations DICOM à la requête
-  req.patientName = patientName;
-  req.patientID = patientID;
-
+ DICOM.parseDicom(byteArray);
   next();
 };
 // checking file type

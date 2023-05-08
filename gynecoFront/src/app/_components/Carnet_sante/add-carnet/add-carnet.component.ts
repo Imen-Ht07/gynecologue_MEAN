@@ -2,17 +2,15 @@ import { Component, OnInit} from '@angular/core';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { Carnet } from 'src/app/_models/carnet';
 import{CarnetService} from 'src/app/_services/carnet.service';
-//import {MatDialogRef} from '@angular/material/dialog';
 @Component({
   selector: 'app-add-carnet',
   templateUrl: './add-carnet.component.html',
   styleUrls: ['./add-carnet.component.css']
 })
 export class AddCarnetComponent  implements OnInit{
-  photo: any = null; 
+  dicom: any = null; 
    carnet!:Carnet;
   carnetForm!:FormGroup;
-
 //radiobox
   couvertureList= ["Oui","Non"];
 sangList=["A","B","AB","O"];
@@ -27,23 +25,24 @@ maladie = this._formBuilder.group({
   Hépatite_C:false,
   Hépatite_B: false,
 });
+
 constructor (private C:CarnetService, 
                    private _formBuilder : FormBuilder,
-                  private formBuilder : FormBuilder,
-                  /*private dialogRef : MatDialogRef<AddCarnetComponent>*/) {
-                                 
+                  private formBuilder : FormBuilder) {
+//
+                                          
 this.carnetForm = this.formBuilder.group({
   //femme
-  photo:[''],
+  dicom:[''],
   nom: ['', Validators['required']],
   prenom:['', Validators['required']],
  adresse:[''],
- naissance:['', Validators['required']],
+ naissance:[''],
  nationalite:[''],
- Cin:['', Validators['required']],
+ Cin:[''],
  niv_inst:[''],
  occupation:[''],
- tel:['', Validators['required']],
+ tel:[''],
  couv:[''],
  num_c:[''],
  sang:[''],
@@ -78,35 +77,56 @@ this.carnetForm = this.formBuilder.group({
  telM:[''],
 
 })};
-ngOnInit(): void{  }
+ngOnInit(): void{
 
-onFileSelected(photo: any) {
-  if (photo.target.files && photo.target.files[0]) {
-    this.photo = photo.target.files[0];
-    console.log(this.photo);
-}
-}
-
-
-/*loadImage(photo: any) {
-  if (photo.target.files && photo.target.files[0]) {
-    this.photo = photo.target.files[0];
-    console.log(this.photo);
-  } else {
-    // Set a default picture if no photo was selected
-    this.photo = '/assets/image/default.jpg';
   }
-}*/
+  
+  onFileSelected(dicom: any) {
+    if (dicom.target.files && dicom.target.files[0]) {
+      this.dicom = dicom.target.files[0];
+      console.log(this.dicom);
+  };
+  }
 addCarnet(): any {
-    this.C.addCarnet(this.carnetForm.value,this.photo)
-    .subscribe({
-      next: (response) => {
-        if (response.success) {
-          alert("Les informations sont enregistrées avec succès");
-          this.carnetForm.reset();
-          //this.dialogRef.close('save');
-        } else {
-          alert(" Les informations ne sont pas enregistrées");
-        }
-    }})
-}}
+  console.log('Valeur du formulaire : ', this.carnetForm.value);
+  console.log('Valeur du fichier DICOM : ', this.dicom);
+  this.C.addCarnet(this.carnetForm.value, this.dicom)
+  .subscribe({
+  next: (response) => {
+  console.log('Réponse du serveur : ', response);
+  if (response.ok) {
+  alert("Les informations ont été enregistrées avec succès");
+  } else {
+  alert("Une erreur est survenue lors de l'enregistrement des informations.");
+  }
+  },
+  error: (err) => {
+  alert("Une erreur est survenue lors de l'enregistrement des informations.");
+  }
+  });
+  }
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -4,7 +4,6 @@ import { PatienteService } from 'src/app/_services/patiente.service';
 import { UserService } from 'src/app/_services/user.service';
 import { Patiente } from 'src/app/_models/patiente';
 
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -13,7 +12,7 @@ import { Patiente } from 'src/app/_models/patiente';
 export class DashboardComponent {
   nbrP : any;
   patientes: Patiente[]=[];
-  constructor(private SecretaireService:SecretaireService,
+  constructor(
     private PatienteService:PatienteService,
     private UserService:UserService  ){}
     user!:any;
@@ -27,12 +26,10 @@ export class DashboardComponent {
         this.PatienteService.getNbP().subscribe((data)=>
         {this.nbrP =data, console.log("Nombre de patiente "+this.nbrP)});
       }
-  
-     
     
       async logOut() {
         if (confirm("Do you want to log out?")) {
-          await this.UserService.logoutUser()
+          await this.UserService.logout()
         }
       }
 }

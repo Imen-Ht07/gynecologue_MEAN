@@ -8,7 +8,6 @@ import { RequestResetComponent } from './_components/request-reset/request-reset
 import { CarnetComponent } from './_components/Carnet_sante/carnet/carnet.component';
 import { AddCarnetComponent } from './_components/Carnet_sante/add-carnet/add-carnet.component';
 import { UpdcarnetComponent } from './_components/Carnet_sante/updcarnet/updcarnet.component';
-import { ViewCarnetComponent } from './_components/Carnet_sante/view-carnet/view-carnet.component';
 //home
 import { HomeComponent } from './_components/home/home.component';
 import { DocServiceComponent } from './_components/doc-service/doc-service.component';
@@ -29,20 +28,19 @@ const routes: Routes = [
   { path: 'service', component: DocServiceComponent},
   { path: 'blog', component: BlogComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'carnet', component: CarnetComponent },
-  { path: 'addcarnet', component: AddCarnetComponent },
-  { path: 'updcarnet', component: UpdcarnetComponent },
-  { path: 'viewcarnet', component: ViewCarnetComponent },
-  { path: 'admin/dashboard', component: DashboardComponent },
-  { path: 'admin/listP', component: ListPatientesComponent },
-  { path: 'admin/ord', component: OrdonnanceComponent},
-  {path: 'admin/patiente', component:AddPatComponent},
-  {path:'admin/addmedic', component:AddMedicComponent },
-  {path:'admin/listM', component:ListMedicComponent },
+  { path: 'carnet', component: CarnetComponent ,  data: { roles: ['patiente', 'docteur'] } },
+  { path: 'addcarnet', component: AddCarnetComponent , data: { roles: ['docteur']}},
+  { path: 'updcarnet', component: UpdcarnetComponent , data: { roles: ['docteur']} },
+  { path: 'admin/dashboard', component: DashboardComponent , data: { roles: ['docteur','secretaire']} },
+  { path: 'admin/listP', component: ListPatientesComponent , data: { roles: ['docteur']}},
+  { path: 'admin/ord', component: OrdonnanceComponent , data: { roles: ['docteur']}},
+  {path: 'admin/patiente', component:AddPatComponent, data: { roles: ['docteur','secretaire']}},
+  {path:'admin/addmedic', component:AddMedicComponent, data: { roles: ['docteur']}},
+  {path:'admin/listM', component:ListMedicComponent , data: { roles: ['docteur']} },
   //psw
   {path:'request', component:RequestResetComponent },
   {path:'response/:resettoken', component:ResponseResetComponent},
-  {path:'changepass/:id', component: ChangePassComponent },
+  {path:'changepass/:id', component: ChangePassComponent , data: { roles: ['docteur','patiente']}},
 
 ];  
 

@@ -23,8 +23,8 @@
 
                   <div class="col-md-12 col-lg-10 col-12" >
                     <div class="form-group files" >
-                      <label class="my-auto">Photo</label>
-                      <input id="file" type="file" class="form-control" [(ngModel)]="carnetForm.photo" (change)="loadImage($event)" />
+                      <label class="my-auto">Echographie</label>
+                      <input id="file" type="file" class="form-control" [(ngModel)]="carnetForm.dicom" (change)="onFileSelected($event)" />
                     </div>
                   </div>
                 <div class="col-lg-5 col-md-6 col-sm-12">

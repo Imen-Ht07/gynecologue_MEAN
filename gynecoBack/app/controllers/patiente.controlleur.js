@@ -1,6 +1,21 @@
 const Patiente = require('../models/patiente.model');
 const bcrypt = require("bcryptjs");
-const crypto = require("crypto");
+const twilio = require('twilio');
+const accountSid = 'AC18d59b9ac1675efe84d5e5f993cb9281';
+    const authToken = '868c091927d42293dfe11b0057d9fe9a';
+
+//MSG TEL 
+const twilioClient = twilio(accountSid, authToken);
+const messageBody = `Rendez-vous`;
+const messageParams = {
+  body: messageBody,
+  from: '+21653871820',
+  to: Patiente.tel ,
+};
+
+twilioClient.messages.create(messageParams)
+  .then(message => console.log(`SMS message sent with message ID ${message.sid}`))
+  .catch(error => console.error(`Failed to send SMS message: ${error.message}`));
 
 //save
 exports.savepatiente = async (req, res, next) => {

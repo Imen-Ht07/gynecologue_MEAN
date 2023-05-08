@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require('body-parser');
+const cookieParser = require("cookie-parser")
 const app = express();
 
 //importation 
@@ -18,14 +19,22 @@ app.use((req, res, next) => {
   next();
 });
 
-//pour les images BFR(Backend et Frontend Relation)
-const corsOptions = {
-  origin: 'http://localhost:4200', // Replace with your Angular app's domain
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-};
+//pour (Backend et Frontend Relation)
+var corsOptions = {
+  origin: ["http://localhost:4200"],
+  credentials: true
+}
+
 
 app.use(cors(corsOptions)); 
+//configurer CORS
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 
 
 // parse requests of content-type - application/json
@@ -33,13 +42,16 @@ app.use(bodyParser.json())
 // parse requests of content-type - application/x-www-form-urlencoded
 
 app.use(bodyParser.urlencoded({ extended: true }))
-
+//cookieParser
+app.use(cookieParser())
 // routes
 app.use('/carnet', carnet);
 app.use('/auth', auth);
 app.use('/patiente', patiente);
 app.use('/secretaire', secretaire);
 app.use('/uploads', express.static('uploads'));
+app.use('/dicom_files', express.static('dicom_files'));
+app.use('/dist', express.static('dist'));
 app.use('/medic', medic);
 app.use('/ord', ord);
 

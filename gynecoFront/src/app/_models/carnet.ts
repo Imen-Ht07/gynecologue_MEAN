@@ -1,7 +1,7 @@
 export class Carnet {
     _id!:String;
      //femme
-    photo!: String;
+    dicom!:String;
     nom!: String;
     prenom!:String;
     adresse!:String;
