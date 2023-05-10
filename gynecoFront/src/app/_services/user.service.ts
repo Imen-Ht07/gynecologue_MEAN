@@ -70,9 +70,9 @@ export class UserService {
     return this.http.post(`${this.API_URI}/ResetPassword`, body);
   }
 
-  //newPassword(resettoken:any, patienteId:any): Observable<any> {
-  //  return this.http.post(`${this.API_URI}/NewPassword/${patienteId}/${resettoken}`);
- // }
+  newPassword(resettoken:any, patienteId:any,body:any): Observable<any> {
+   return this.http.post(`${this.API_URI}/NewPassword/${patienteId}/${resettoken}`,body);
+ }
 
   ValidPasswordToken(resettoken:any, patienteId:any): Observable<any> {
     return this.http.get(`${this.API_URI}/ValidPasswordToken${patienteId}/${resettoken}`);

@@ -6,14 +6,15 @@ const PasswordResetToken = require('../models/resetpass.model');
 module.exports = {
     //
 async ResetPassword(req, res) {
-    if (!req.body.PatienteName) {
+  const {userName} = req.body;
+  if (!userName) {
     return res
     .status(500)
     .json({ message: 'Patiente name is required' });
     }
     const patiente = await Patiente.findOne({
-    PatienteName:req.body.PatienteName
-    });
+      userName:userName,
+     });
     if (!patiente) {
     return res
     .status(409)

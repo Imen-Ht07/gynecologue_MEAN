@@ -9,22 +9,14 @@ const carnet = require("./app/routes/carnet.routes")
 const auth = require("./app/routes/auth.routes")
 const patiente = require("./app/routes/patiente.routes")
 const secretaire = require("./app/routes/secretaire.routes")
-const medic = require("./app/routes/medic.routes")
 const ord = require("./app/routes/ord.routes")
-//aide les ports de back et front a s'adapter 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
+
 
 //pour (Backend et Frontend Relation)
 var corsOptions = {
   origin: ["http://localhost:4200"],
   credentials: true
 }
-
 
 app.use(cors(corsOptions)); 
 //configurer CORS
@@ -51,8 +43,6 @@ app.use('/patiente', patiente);
 app.use('/secretaire', secretaire);
 app.use('/uploads', express.static('uploads'));
 app.use('/dicom_files', express.static('dicom_files'));
-app.use('/dist', express.static('dist'));
-app.use('/medic', medic);
 app.use('/ord', ord);
 
 //accées au data base 
