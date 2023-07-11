@@ -10,5 +10,10 @@ declare module 'cornerstone-math' {
 
 declare module 'cornerstone-wado-image-loader' {
   const cornerstoneWADOImageLoader: typeof import('cornerstone-wado-image-loader');
+  export const configure: (config: any) => void;
+  export const external: any;
+  export const webWorkerManager: any;
+  export const loadAndCacheImage: (imageId: string) => Promise<any>;
   export default cornerstoneWADOImageLoader;
 }
+

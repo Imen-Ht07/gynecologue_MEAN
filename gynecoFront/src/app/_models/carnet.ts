@@ -1,47 +1,47 @@
 export class Carnet {
-    _id!:String;
+    _id!:string;
      //femme
-    dicom!:String;
-    nom!: String;
-    prenom!:String;
-    adresse!:String;
+    dicom!:string;
+    nom!: string;
+    prenom!:string;
+    adresse!:string;
     naissance!:Date;
-    nationalite!:String;
+    nationalite!:string;
     Cin!: Number;
-    niv_inst!:String;
-    occupation!:String;
+    niv_inst!:string;
+    occupation!:string;
     tel!:Number;
-    couv!:String;
+    couv!:string;
     num_c!:Number;
-    sang!:String;
-    rhesus!:String;
-    type_allergie!:String;
+    sang!:string;
+    rhesus!:string;
+    type_allergie!:string;
     declaree_allergie!:Date;
-    traitement!:String; 
-    med_tret!:String;
+    traitement!:string; 
+    med_tret!:string;
     age_pub!:Number;
-    prob!:String;
-    maladie!:String;
-    maladieF!:String;
-    type_handicap!:String;
-     declaree_handicap!:String;
+    prob!:string;
+    maladie!:string;
+    maladieF!:string;
+    type_handicap!:string;
+     declaree_handicap!:string;
      //vaccin
      date_vaccin1!:Date;
-     lieu_vaccin1!:String;
+     lieu_vaccin1!:string;
      date_vaccin2!:Date;
-     lieu_vaccin2!:String;
+     lieu_vaccin2!:string;
      date_vaccin3!:Date;
-     lieu_vaccin3!:String;
+     lieu_vaccin3!:string;
      date_vaccin4!:Date;
-     lieu_vaccin4!:String;
+     lieu_vaccin4!:string;
      date_vaccin5!:Date;
-     lieu_vaccin5!:String;
+     lieu_vaccin5!:string;
      date_rubeole!:Date;
-     lieu_rubeole!:String;
-     autre_vaccin!:String;
+     lieu_rubeole!:string;
+     autre_vaccin!:string;
     //medecin 
-    nomM!:String;
-    prenomM!:String;
+    nomM!:string;
+    prenomM!:string;
     telM!:Number;
    
 }

@@ -72,7 +72,8 @@ import { ChangePassComponent } from './_components/change-pass/change-pass.compo
 import { AddMedicComponent } from './_components/_docteur/add-medic/add-medic.component';
 import { ListMedicComponent } from './_components/_docteur/list-medic/list-medic.component';
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
-
+//dicom
+import { DicomViewerModule } from 'ng-dicomviewer';
 
 const materialModules = [
   CdkTreeModule,
@@ -130,6 +131,7 @@ const materialModules = [
     ChangePassComponent,
     AddMedicComponent,
     ListMedicComponent,
+    
   ],
   imports: [
     BrowserModule,
